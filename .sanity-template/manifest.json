@@ -1,0 +1,46 @@
+{
+  "deployment": {
+    "provider": "netlify",
+    "sites": [
+      {
+        "buildSettings": {
+          "base": "/",
+          "cmd": "yarn build",
+          "dir": "/public"
+        },
+        "description": "A base frontend that is intentionally bare and un-styled so that it can be easily customized.",
+        "dir": "/",
+        "id": "web",
+        "requiredCorsOrigins": [
+          {
+            "allowCredentials": false,
+            "origin": "http://localhost:8000"
+          }
+        ],
+        "requirements": [
+          "build-hook"
+        ],
+        "title": "Base Gatsby Frontend",
+        "type": "web"
+      }
+    ],
+    "studio": {
+      "basePath": "/studio"
+    }
+  },
+  "description": "Website Factory starter",
+  "technologies": [
+    {
+      "id": "gatsby",
+      "name": "Gatsby",
+      "url": "https://www.gatsbyjs.com/"
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify",
+      "url": "https://www.netlify.com/"
+    }
+  ],
+  "title": "Gastby and Sanity starter for Website Factory projects",
+  "version": 2
+}
