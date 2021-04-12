@@ -23,10 +23,7 @@
         "title": "Base Gatsby Frontend",
         "type": "web"
       }
-    ],
-    "studio": {
-      "basePath": "/studio"
-    }
+    ]
   },
   "description": "Website Factory starter",
   "technologies": [
