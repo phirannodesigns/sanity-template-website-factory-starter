@@ -1,30 +1,29 @@
 {
-  "root": true,
-  "project": {
-    "name": "Website Factory Starter"
-  },
   "api": {
-    "projectId": "dki5l4zp",
-    "dataset": "production"
+    "dataset": "production",
+    "projectId": "dki5l4zp"
   },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./structure/desk-structure.js"
+    }
+  ],
   "plugins": [
     "@sanity/base",
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool"
+    "@sanity/desk-tool",
+    "@sanity/color-input",
+    "@sanity/code-input"
   ],
-  "env": {
-    "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
-    }
+  "project": {
+    "name": "Website Factory Starter"
   },
-  "parts": [
-    {
-      "name": "part:@sanity/base/schema",
-      "path": "./schemas/schema"
-    }
-  ]
+  "root": true
 }
