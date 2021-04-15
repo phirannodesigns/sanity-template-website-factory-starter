@@ -3,27 +3,48 @@
     "dataset": "production",
     "projectId": "dki5l4zp"
   },
+  "env": {
+    "development": {
+      "plugins": ["@sanity/vision"]
+    }
+  },
   "parts": [
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
     },
     {
-      "name": "part:@sanity/desk-tool/structure",
-      "path": "./structure/desk-structure.js"
+      "implements": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./dashboardConfig.js"
+    },
+    {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "./branding/logo.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./branding/skin.css"
     }
   ],
   "plugins": [
     "@sanity/base",
+    "@sanity/color-input",
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
+    "@sanity/dashboard",
     "@sanity/desk-tool",
-    "@sanity/color-input",
-    "@sanity/code-input"
+    "dashboard-widget-document-list",
+    "media-library",
+    "note-field"
   ],
   "project": {
-    "name": "Website Factory Starter"
+    "basePath": "/studio",
+    "name": "HULL"
   },
   "root": true
 }
