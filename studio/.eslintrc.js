@@ -3,9 +3,10 @@ module.exports = {
   extends: ['sanity/react', 'prettier'],
   root: true,
   rules: {
-    'react/prop-types': 1,
+    camelcase: 0,
     'max-len': 0,
     'no-unused-vars': 1,
-    camelcase: 0,
+    'react/jsx-no-bind': 0,
+    'react/prop-types': 1,
   },
 }
