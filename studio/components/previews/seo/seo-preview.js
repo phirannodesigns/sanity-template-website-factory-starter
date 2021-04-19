@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react'
 import GoogleSearchResult from './google-search'
 import TwitterCard from './twitter-card'
@@ -5,25 +6,11 @@ import FacebookShare from './facebook-share'
 
 import sanityClient from 'part:@sanity/base/client'
 
-class SeoPreviews extends React.PureComponent {
-  static propTypes = {
-    document: PropTypes.object,
-  }
+function SeoPreviews({ options, document }) {
+  const [defaultSEO, setDefaultSEO] = React.useState({})
+  const { displayed } = document
 
-  static defaultProps = {
-    document: null,
-  }
-
-  state = {
-    defaultSEO: {},
-  }
-
-  constructor() {
-    super()
-    this.loadData()
-  }
-
-  loadData = () => {
+  React.useEffect(() => {
     sanityClient
       .fetch(
         `
@@ -38,37 +25,29 @@ class SeoPreviews extends React.PureComponent {
       `
       )
       .then((seo) => {
-        this.setState({
-          defaultSEO: seo || {},
-        })
+        setDefaultSEO(seo || {})
       })
-  }
+  }, [])
 
-  render() {
-    const { options } = this.props
-    const { displayed } = this.props.document
-    const { defaultSEO } = this.state
-
-    return (
-      <>
-        <GoogleSearchResult
-          default={defaultSEO}
-          document={displayed}
-          options={options}
-        />
-        <TwitterCard
-          default={defaultSEO}
-          document={displayed}
-          options={options}
-        />
-        <FacebookShare
-          default={defaultSEO}
-          document={displayed}
-          options={options}
-        />
-      </>
-    )
-  }
+  return (
+    <>
+      <GoogleSearchResult
+        default={defaultSEO}
+        document={displayed}
+        options={options}
+      />
+      <TwitterCard
+        default={defaultSEO}
+        document={displayed}
+        options={options}
+      />
+      <FacebookShare
+        default={defaultSEO}
+        document={displayed}
+        options={options}
+      />
+    </>
+  )
 }
 
 export default SeoPreviews

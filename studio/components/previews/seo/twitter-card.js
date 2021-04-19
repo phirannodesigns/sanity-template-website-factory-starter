@@ -12,27 +12,21 @@ const urlFor = (source) => {
 }
 
 const author = {
-  name: 'Nick DiMatteo',
-  handle: 'ndimatteo',
+  name: 'Phiranno Designs',
+  handle: 'phirannodesigns',
   image:
-    'https://pbs.twimg.com/profile_images/1174691001119756288/TbJJ6_2I_400x400.jpg',
+    'https://scontent-syd2-1.cdninstagram.com/v/t51.2885-19/s320x320/115762971_574467673236601_5118064742609230871_n.jpg?tp=1&_nc_ht=scontent-syd2-1.cdninstagram.com&_nc_ohc=JvIPnUEV4bkAX_MaJyB&edm=ABfd0MgAAAAA&ccb=7-4&oh=13642370e43cdcaea8836abde367e8bf&oe=60A2F41F&_nc_sid=7bff83',
 }
 
-class TwitterCard extends React.PureComponent {
-  static propTypes = {
-    default: PropTypes.object,
-    document: PropTypes.object,
-    width: PropTypes.number,
-  }
+TwitterCard.propTypes = {
+  default: PropTypes.object,
+  document: PropTypes.object,
+  width: PropTypes.number,
+}
 
-  static defaultProps = {
-    default: null,
-    document: null,
-    width: 580,
-  }
-
-  render() {
-    const { default: defaultSEO, document, options, width } = this.props
+function TwitterCard(
+  { default: defaultSEO = null, document = null, options, width = 580 }
+  ) {
     const { seo } = document
 
     const url = assemblePageUrl({ document, options })
@@ -110,7 +104,6 @@ class TwitterCard extends React.PureComponent {
         </div>
       </div>
     )
-  }
 }
 
 export default TwitterCard

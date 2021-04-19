@@ -11,74 +11,70 @@ const urlFor = (source) => {
   return builder.image(source)
 }
 
-class FacebookShare extends React.PureComponent {
-  static propTypes = {
-    default: PropTypes.object,
-    document: PropTypes.object,
-    width: PropTypes.number,
-  }
+FacebookShare.propTypes = {
+  default: PropTypes.object,
+  document: PropTypes.object,
+  width: PropTypes.number,
+}
 
-  static defaultProps = {
-    default: null,
-    document: null,
-    width: 580,
-  }
+function FacebookShare({
+  default: defaultSEO = null,
+  document = null,
+  options,
+  width = 580,
+}) {
+  const { seo } = document
 
-  render() {
-    const { default: defaultSEO, document, options, width } = this.props
-    const { seo } = document
+  const url = assemblePageUrl({ document, options })
+  const websiteUrlWithoutProtocol = url.split('://')[1]
 
-    const url = assemblePageUrl({ document, options })
-    const websiteUrlWithoutProtocol = url.split('://')[1]
+  const shareTitle = seo?.shareTitle || defaultSEO?.shareTitle
+  const shareDesc = seo?.shareDesc || defaultSEO?.shareDesc
+  const shareGraphic = seo?.shareGraphic || defaultSEO?.shareGraphic
 
-    const shareTitle = seo?.shareTitle || defaultSEO?.shareTitle
-    const shareDesc = seo?.shareDesc || defaultSEO?.shareDesc
-    const shareGraphic = seo?.shareGraphic || defaultSEO?.shareGraphic
-
-    return (
-      <div className={styles.seoItem}>
-        <h3 className={styles.seoItemTitle}>Facebook share</h3>
-        <div className={styles.seoItemContent}>
-          {shareTitle ? (
-            <div className={styles.seoItemCard}>
-              <div className={styles.facebookWrapper} style={{ width }}>
-                <div className={styles.facebookImageContainer}>
-                  {shareGraphic ? (
-                    <img
-                      className={styles.facebookCardImage}
-                      src={urlFor(shareGraphic.asset)
-                        .width(1200)
-                        .height(630)
-                        .url()}
-                    />
-                  ) : (
-                    <span className={styles.imagePlaceholder} />
-                  )}
+  return (
+    <div className={styles.seoItem}>
+      <h3 className={styles.seoItemTitle}>Facebook share</h3>
+      <div className={styles.seoItemContent}>
+        {shareTitle ? (
+          <div className={styles.seoItemCard}>
+            <div className={styles.facebookWrapper} style={{ width }}>
+              <div className={styles.facebookImageContainer}>
+                {shareGraphic ? (
+                  <img
+                    className={styles.facebookCardImage}
+                    src={urlFor(shareGraphic.asset)
+                      .width(1200)
+                      .height(630)
+                      .url()}
+                  />
+                ) : (
+                  <span className={styles.imagePlaceholder} />
+                )}
+              </div>
+              <div className={styles.facebookCardContent}>
+                <div className={styles.facebookCardUrl}>
+                  {websiteUrlWithoutProtocol}
                 </div>
-                <div className={styles.facebookCardContent}>
-                  <div className={styles.facebookCardUrl}>
-                    {websiteUrlWithoutProtocol}
-                  </div>
-                  <div className={styles.facebookCardTitle}>
-                    <a href={url} target="_blank" rel="noreferrer">
-                      {shareTitle}
-                    </a>
-                  </div>
-                  {shareDesc && (
-                    <div className={styles.facebookCardDescription}>
-                      {shareDesc}
-                    </div>
-                  )}
+                <div className={styles.facebookCardTitle}>
+                  <a href={url} target="_blank" rel="noreferrer">
+                    {shareTitle}
+                  </a>
                 </div>
+                {shareDesc && (
+                  <div className={styles.facebookCardDescription}>
+                    {shareDesc}
+                  </div>
+                )}
               </div>
             </div>
-          ) : (
-            <p>Please add a title and fill out your SEO fields first.</p>
-          )}
-        </div>
+          </div>
+        ) : (
+          <p>Please add a title and fill out your SEO fields first.</p>
+        )}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default FacebookShare
