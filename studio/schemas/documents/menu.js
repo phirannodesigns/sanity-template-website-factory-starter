@@ -1,26 +1,11 @@
-import { FiMenu } from 'react-icons/fi'
+import { FiMenu as icon } from 'react-icons/fi'
 
 export default {
   title: 'Menu',
   name: 'menu',
   type: 'document',
-  icon: FiMenu,
+  icon,
   fields: [
-    {
-      title: 'Title',
-      name: 'title',
-      type: 'string',
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      description: 'required',
-      options: {
-        source: 'title',
-        maxLength: 30,
-      },
-    },
     {
       title: 'Nav Items',
       name: 'items',
@@ -28,4 +13,11 @@ export default {
       of: [{ type: 'navPage' }, { type: 'navLink' }, { type: 'navDropdown' }],
     },
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Menu',
+      }
+    },
+  },
 }

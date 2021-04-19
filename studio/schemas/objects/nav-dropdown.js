@@ -1,9 +1,10 @@
-import { FiAlertCircle } from 'react-icons/fi'
+import { FiChevronDown as icon } from 'react-icons/fi'
 
 export default {
   title: 'Dropdown',
   name: 'navDropdown',
   type: 'object',
+  icon,
   fields: [
     {
       title: 'Title',
@@ -16,17 +17,6 @@ export default {
       name: 'dropdownItems',
       type: 'array',
       of: [{ type: 'navPage' }, { type: 'navLink' }],
-    },
-    {
-      name: 'featuredNote',
-      type: 'note',
-      options: {
-        icon: FiAlertCircle,
-        headline: 'Gotcha',
-        message:
-          'Featured products are only for menus that appear in desktop "mega-navs".',
-        tone: 'caution',
-      },
     },
   ],
 }

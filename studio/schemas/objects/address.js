@@ -36,7 +36,7 @@ export default {
     prepare({ title }) {
       return {
         title,
-      };
+      }
     },
   },
-};
+}

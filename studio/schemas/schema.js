@@ -38,6 +38,7 @@ import productOptionValue from './objects/product-option-value'
 import productOptionSettings from './objects/product-option-settings'
 
 import link from './objects/link'
+import headingLine from './objects/heading-line'
 import navDropdown from './objects/nav-dropdown'
 import navPage from './objects/nav-page'
 import navLink from './objects/nav-link'
@@ -106,6 +107,7 @@ export default createSchema({
     productOptionSettings,
 
     link,
+    headingLine,
     navDropdown,
     navPage,
     navLink,

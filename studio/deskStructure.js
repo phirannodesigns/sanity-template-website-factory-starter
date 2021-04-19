@@ -93,9 +93,15 @@ export default () =>
                 )
                 .icon(FiGlobe),
               S.listItem()
-                .title('Menus')
-                .child(S.documentTypeList('menu').title('Menus'))
+                .title('Menu')
+                .child(
+                  S.editor().id('menu').schemaType('menu').documentId('menu')
+                )
                 .icon(FiMenu),
+              // S.listItem()
+              //   .title('Menus')
+              //   .child(S.documentTypeList('menu').title('Menus'))
+              //   .icon(FiMenu),
               S.listItem()
                 .title('Redirects')
                 .child(S.documentTypeList('redirect').title('Redirects'))

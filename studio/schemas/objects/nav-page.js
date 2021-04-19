@@ -1,7 +1,10 @@
+import { FiLayout as icon } from 'react-icons/fi'
+
 export default {
   title: 'Page',
   name: 'navPage',
   type: 'object',
+  icon,
   fields: [
     {
       title: 'Title',

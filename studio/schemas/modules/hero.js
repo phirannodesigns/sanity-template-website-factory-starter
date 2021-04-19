@@ -9,9 +9,15 @@ export default {
   icon: FiStar,
   fields: [
     {
-      title: 'Overlay Content',
-      name: 'content',
-      type: 'complexPortableText',
+      title: 'Heading',
+      name: 'heading',
+      type: 'array',
+      of: [{ type: 'headingLine' }],
+    },
+    {
+      title: 'Call to Action',
+      name: 'link',
+      type: 'link',
     },
     {
       title: 'Background Type',

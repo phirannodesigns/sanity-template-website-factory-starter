@@ -1,10 +1,10 @@
-import { FiFile } from 'react-icons/fi'
+import { FiLayout as icon } from 'react-icons/fi'
 
 export default {
   title: 'Page',
   name: 'page',
   type: 'document',
-  icon: FiFile,
+  icon,
   fields: [
     {
       name: 'title',

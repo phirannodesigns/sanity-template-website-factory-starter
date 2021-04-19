@@ -8,9 +8,8 @@ export default {
       type: 'string',
       options: {
         list: [
-          { title: 'Default', value: '' },
           { title: 'Primary', value: 'is-primary' },
-          { title: 'White', value: 'is-white' },
+          { title: 'Outline', value: 'is-outline' },
         ],
         layout: 'radio',
       },
