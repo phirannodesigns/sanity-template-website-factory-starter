@@ -7,6 +7,11 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        orange: {
+          DEFAULT: '#ea612a'
+        }
+      },
       fontFamily: {
         sans: ['Avenir Next', ...defaultTheme.fontFamily.sans],
       },
