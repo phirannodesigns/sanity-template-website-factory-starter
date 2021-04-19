@@ -16,7 +16,7 @@ import {
 
 import SeoPreview from './components/previews/seo/seo-preview'
 
-const remoteURL = 'https://insane.codes'
+const remoteURL = 'https://bydenhomes.netlify.app'
 const localURL = 'http://localhost:3000'
 const previewURL =
   window.location.hostname === 'localhost' ? localURL : remoteURL
