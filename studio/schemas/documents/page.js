@@ -28,7 +28,6 @@ export default {
       of: [
         { type: 'grid' },
         { type: 'hero' },
-        { type: 'marquee' },
         { type: 'dividerPhoto' },
       ],
     },
