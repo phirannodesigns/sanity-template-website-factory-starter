@@ -1,3 +1,5 @@
+import { FiAlertCircle } from 'react-icons/fi'
+
 import { Button } from '../../components/block-renders'
 
 import ConditionalFields from '../../components/conditional-field'
@@ -11,6 +13,12 @@ export default {
   },
   fields: [
     {
+      title: 'Title',
+      name: 'title',
+      type: 'string',
+      description: 'Display Text',
+    },
+    {
       title: '(A) Internal Page',
       name: 'page',
       type: 'reference',
@@ -20,6 +28,17 @@ export default {
       title: '(B) External URL',
       name: 'url',
       type: 'url',
+    },
+    {
+      name: 'featuredNote',
+      type: 'note',
+      options: {
+        icon: FiAlertCircle,
+        headline: 'Gotcha',
+        message:
+          'Make sure to <em>only</em> fill in either <strong>(A) Internal Page</strong> or <strong>(B) External URL</strong>',
+        tone: 'caution'
+      },
     },
     {
       title: 'Style as Button?',
