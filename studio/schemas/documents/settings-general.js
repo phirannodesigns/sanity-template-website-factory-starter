@@ -9,6 +9,33 @@ export default {
       name: 'siteURL',
       type: 'url',
     },
+    {
+      title: 'Phone number',
+      name: 'phoneNumber',
+      type: 'string',
+    },
+    {
+      title: 'Email address',
+      name: 'email',
+      type: 'string',
+    },
+    {
+      title: 'Address',
+      name: 'address',
+      type: 'address',
+    },
+    {
+      title: 'Hours',
+      name: 'hours',
+      type: 'array',
+      of: [{ type: 'openHours' }],
+    },
+    {
+      title: 'Social Links',
+      name: 'socialLinks',
+      type: 'array',
+      of: [{ type: 'socialLink' }],
+    },
   ],
   preview: {
     prepare() {

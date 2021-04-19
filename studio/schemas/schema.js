@@ -42,6 +42,9 @@ import navDropdown from './objects/nav-dropdown'
 import navPage from './objects/nav-page'
 import navLink from './objects/nav-link'
 import socialLink from './objects/social-link'
+import openHours from './objects/open-hours'
+import address from './objects/address'
+import googleMaps from './objects/google-maps'
 
 import simplePortableText from './objects/portable-simple'
 import complexPortableText from './objects/portable-complex'
@@ -107,6 +110,9 @@ export default createSchema({
     navPage,
     navLink,
     socialLink,
+    openHours,
+    address,
+    googleMaps,
 
     simplePortableText,
     complexPortableText,
