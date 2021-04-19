@@ -5,30 +5,27 @@ import * as React from 'react';
 import { HiMenu } from 'react-icons/hi';
 
 import config from '../../config.json';
+import { Logo } from '../icons/logo';
 
 function Nav(): React.ReactElement {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => setIsOpen((prevState) => !prevState);
   return (
-    <div className="sticky inset-x-0 top-0 z-10 bg-white">
-      <div className="relative z-20 shadow">
+    <div className="sticky inset-x-0 top-0 z-20 text-white bg-black">
+      <div className="relative shadow">
         <div className="flex items-center justify-between px-4 py-5 mx-auto max-w-screen-2xl sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
           <div>
             <Link to="/" className="flex">
               <span className="sr-only">{config.siteTitle}</span>
-              <img
-                className="w-auto h-8 sm:h-10"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt=""
-              />
+              <Logo aria-hidden className="w-auto h-8 sm:h-10 text-orange" />
             </Link>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <button
               type="button"
               onClick={toggle}
-              className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-white bg-opacity-0 rounded-md text-orange hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange"
             >
               <span className="sr-only">Open menu</span>
               <HiMenu aria-hidden className="w-6 h-6" />
@@ -41,8 +38,10 @@ function Nav(): React.ReactElement {
                   key={label}
                   to={slug}
                   className={`text-base font-medium ${
-                    pathname === slug ? 'text-gray-900' : 'text-gray-500'
-                  } hover:text-gray-900`}
+                    pathname === slug
+                      ? 'text-white'
+                      : 'text-gray-200 hover:text-white'
+                  } hover:underline`}
                 >
                   {label}
                 </Link>
