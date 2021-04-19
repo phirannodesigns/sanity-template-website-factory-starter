@@ -32,16 +32,9 @@ export default {
       title: 'Alternative text',
       name: 'alt',
       type: 'string',
-      description: 'Important for SEO and accessiblity.',
+      description: 'Important for SEO and accessibility.',
       options: {
         isHighlighted: true,
-      },
-      validation: (Rule) => {
-        return Rule.custom((field, context) =>
-          'asset' in context.parent && field === undefined
-            ? 'Required! (think about non-visual readers)'
-            : true
-        )
       },
     },
   ],
