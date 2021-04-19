@@ -37,7 +37,7 @@ import productOption from './objects/product-option'
 import productOptionValue from './objects/product-option-value'
 import productOptionSettings from './objects/product-option-settings'
 
-import link from './objects/link';
+import link from './objects/link'
 import navDropdown from './objects/nav-dropdown'
 import navPage from './objects/nav-page'
 import navLink from './objects/nav-link'

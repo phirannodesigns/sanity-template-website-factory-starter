@@ -68,6 +68,6 @@ const DynamicSelect = React.forwardRef((props, ref) => {
   )
 })
 
-DynamicSelect.displayName = DynamicSelect;
+DynamicSelect.displayName = DynamicSelect
 
 export default withDocument(DynamicSelect)
