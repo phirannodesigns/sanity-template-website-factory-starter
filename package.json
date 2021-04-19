@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-phiranno-designs",
+  "name": "sanity-template-website-factory-starter",
   "private": true,
-  "description": "Gatsby Starter for Phiranno Designs Websites",
+  "description": "Gatsby/Sanity Starter for Website Factory sites",
   "version": "0.1.0",
   "author": "Luke Bennett <l.bennett@phirannodesigns.com.au>",
   "license": "0BSD",
