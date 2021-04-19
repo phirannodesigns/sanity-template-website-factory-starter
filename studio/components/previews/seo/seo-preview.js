@@ -1,6 +1,4 @@
-/* eslint-disable react/no-multi-comp, react/no-did-mount-set-state, react/forbid-prop-types */
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import GoogleSearchResult from './google-search'
 import TwitterCard from './twitter-card'
 import FacebookShare from './facebook-share'

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 import Fieldset from 'part:@sanity/components/fieldsets/default'
 import { setIfMissing } from 'part:@sanity/form-builder/patch-event'
 import {

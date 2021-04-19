@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { FiSettings } from 'react-icons/fi'
 import { FaCircle } from 'react-icons/fa'
 

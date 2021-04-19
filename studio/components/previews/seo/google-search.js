@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp, react/no-did-mount-set-state, react/forbid-prop-types */
-import React from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import { assemblePageUrl } from './frontend-utils'
 import styles from './seo-preview.css'

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { FiAlignLeft } from 'react-icons/fi'
 import { Avatar } from '@sanity/ui'
 

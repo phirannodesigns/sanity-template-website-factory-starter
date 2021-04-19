@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
+import * as React from 'react'
 import Select from 'part:@sanity/components/selects/default'
 import FormField from 'part:@sanity/components/formfields/default'
 import { withDocument } from 'part:@sanity/form-builder'
@@ -66,5 +67,7 @@ const DynamicSelect = React.forwardRef((props, ref) => {
     </FormField>
   )
 })
+
+DynamicSelect.displayName = DynamicSelect;
 
 export default withDocument(DynamicSelect)
