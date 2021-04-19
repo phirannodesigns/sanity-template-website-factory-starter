@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
+// eslint-disable-next-line react/prop-types
 const Logo = ({ projectName }) => {
   return (
     <Icon isLogin={projectName}>
