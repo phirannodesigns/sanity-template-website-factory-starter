@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         orange: {
-          DEFAULT: '#ea612a'
-        }
+          DEFAULT: '#ea612a',
+        },
       },
       fontFamily: {
         sans: ['Avenir Next', ...defaultTheme.fontFamily.sans],

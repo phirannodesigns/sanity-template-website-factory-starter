@@ -44,7 +44,7 @@ interface ISanityGeneralSettingsQuery {
   sanityGeneralSettings: ISanityGeneralSettings;
 }
 
-function useSanitySiteSettings(): ISanityGeneralSettings {
+function useSanityGeneralSettings(): ISanityGeneralSettings {
   const {
     sanityGeneralSettings,
   } = useStaticQuery<ISanityGeneralSettingsQuery>(graphql`
@@ -79,4 +79,4 @@ function useSanitySiteSettings(): ISanityGeneralSettings {
   return sanityGeneralSettings;
 }
 
-export { useSanitySiteSettings };
+export { useSanityGeneralSettings };

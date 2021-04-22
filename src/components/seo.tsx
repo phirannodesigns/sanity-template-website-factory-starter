@@ -2,7 +2,8 @@ import { useLocation } from '@reach/router';
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
-import config from '../../config.json';
+import { useSanityGeneralSettings } from '../hooks/use-sanity-general-settings';
+import { useSanitySEOSettings } from '../hooks/use-sanity-seo-settings';
 
 interface SEOProps {
   title?: string;
@@ -21,13 +22,14 @@ function SEO({
 }: SEOProps): React.ReactElement {
   const location = useLocation();
 
-  const { siteTitle, siteUrl, siteDescription, siteImage, hrefLang } = config;
+  const { siteURL } = useSanityGeneralSettings();
+  const { siteTitle, metaDesc, shareGraphic } = useSanitySEOSettings();
 
   const seo = {
     title,
-    description: description || siteDescription,
-    url: pathname ? `${siteUrl}${pathname}` : location.href,
-    image: `${siteUrl}${image || siteImage}`,
+    description: description || metaDesc,
+    url: pathname ? `${siteURL}${pathname}` : location.href,
+    image: `${siteURL}${image}` || shareGraphic.asset.url,
   };
 
   return (
@@ -36,7 +38,7 @@ function SEO({
       defaultTitle={title}
       titleTemplate={`%s | ${siteTitle}`}
     >
-      <html lang={hrefLang} />
+      <html lang="en-AU" />
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       <meta property="og:title" content={seo.title} />

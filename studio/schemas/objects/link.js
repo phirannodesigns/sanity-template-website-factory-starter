@@ -37,7 +37,7 @@ export default {
         headline: 'Gotcha',
         message:
           'Make sure to <em>only</em> fill in either <strong>(A) Internal Page</strong> or <strong>(B) External URL</strong>',
-        tone: 'caution'
+        tone: 'caution',
       },
     },
     {

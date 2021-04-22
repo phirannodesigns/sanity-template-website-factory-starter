@@ -1,14 +1,14 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 interface INavLink {
-  _key: string;
+  id: string;
   _type: 'navLink';
   url: string;
   title: string;
 }
 
 interface INavPage {
-  _key: string;
+  id: string;
   _type: 'navPage';
   page: {
     id: string;
@@ -21,7 +21,7 @@ interface INavPage {
 }
 
 interface INavDropdown {
-  _key: string;
+  id: string;
   _type: 'navDropdown';
   dropdownItems: Array<INavLink | INavPage>;
   title: 'Services';
@@ -41,17 +41,17 @@ function useSanityMenu(): ISanityMenu {
       sanityMenu(_id: { eq: "menu" }) {
         items {
           ... on SanityNavDropdown {
-            _key
+            id: _key
             _type
             dropdownItems {
               ... on SanityNavLink {
-                _key
+                id: _key
                 _type
                 title
                 url
               }
               ... on SanityNavPage {
-                _key
+                id: _key
                 _type
                 page {
                   ... on SanityPage {
@@ -68,13 +68,13 @@ function useSanityMenu(): ISanityMenu {
             title
           }
           ... on SanityNavLink {
-            _key
+            id: _key
             _type
             title
             url
           }
           ... on SanityNavPage {
-            _key
+            id: _key
             _type
             page {
               ... on SanityPage {
@@ -95,3 +95,4 @@ function useSanityMenu(): ISanityMenu {
 }
 
 export { useSanityMenu };
+export type { INavDropdown, INavLink, INavPage, ISanityMenu, ISanityMenuQuery };

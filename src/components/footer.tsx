@@ -1,12 +1,11 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
-import config from '../../config.json';
-import { FacebookIcon } from '../icons/facebook';
-import { InstagramIcon } from '../icons/instagram';
-import { TwitterIcon } from '../icons/twitter';
+import { useSanityGeneralSettings } from '../hooks/use-sanity-general-settings';
+import { ICON_MAP } from '../utils/icon-map';
 
 function Footer(): React.ReactElement {
+  const { socialLinks } = useSanityGeneralSettings();
   return (
     <footer className="bg-white" aria-labelledby="footerHeading">
       <h2 id="footerHeading" className="sr-only">
@@ -25,20 +24,15 @@ function Footer(): React.ReactElement {
               hierarchies.
             </p>
             <div className="flex space-x-6">
-              {config.socialLinks.map(({ link, socialNetwork }) => {
-                const ICON_MAP = {
-                  Facebook: FacebookIcon,
-                  Instagram: InstagramIcon,
-                  Twitter: TwitterIcon,
-                };
-                const Icon = ICON_MAP[socialNetwork];
+              {socialLinks.map(({ id, url, icon }) => {
+                const Icon = ICON_MAP[icon];
                 return (
                   <a
-                    key={link}
-                    href={link}
+                    key={id}
+                    href={url}
                     className="text-gray-400 hover:text-gray-500"
                   >
-                    <span className="sr-only">{socialNetwork}</span>
+                    <span className="sr-only">{icon}</span>
                     <Icon className="w-6 h-6" aria-hidden />
                   </a>
                 );

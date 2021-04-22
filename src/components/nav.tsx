@@ -1,284 +1,199 @@
-import { Transition } from '@headlessui/react';
+/* eslint-disable sonarjs/no-duplicate-string */
+import { Popover, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/solid';
 import { useLocation } from '@reach/router';
 import { Link } from 'gatsby';
 import * as React from 'react';
 import { HiMenu } from 'react-icons/hi';
 
-import config from '../../config.json';
+import {
+  INavDropdown,
+  INavLink,
+  INavPage,
+  useSanityMenu,
+} from '../hooks/use-sanity-menu';
+import { useSanitySEOSettings } from '../hooks/use-sanity-seo-settings';
 import { Logo } from '../icons/logo';
+import { classNames } from '../utils/classnames';
+import { MobileMenu } from './mobile-menu';
 
 function Nav(): React.ReactElement {
-  const { pathname } = useLocation();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const toggle = () => setIsOpen((prevState) => !prevState);
+  const { items } = useSanityMenu();
+  const { siteTitle } = useSanitySEOSettings();
   return (
-    <div className="sticky inset-x-0 top-0 z-20 text-white bg-black">
-      <div className="relative shadow">
-        <div className="flex items-center justify-between px-4 py-5 mx-auto max-w-screen-2xl sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
-          <div>
-            <Link to="/" className="flex">
-              <span className="sr-only">{config.siteTitle}</span>
-              <Logo aria-hidden className="w-auto h-8 sm:h-10 text-orange" />
-            </Link>
-          </div>
-          <div className="-my-2 -mr-2 md:hidden">
-            <button
-              type="button"
-              onClick={toggle}
-              className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-white bg-opacity-0 rounded-md text-orange hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange"
-            >
-              <span className="sr-only">Open menu</span>
-              <HiMenu aria-hidden className="w-6 h-6" />
-            </button>
-          </div>
-          <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
-            <nav className="flex justify-end ml-auto space-x-10">
-              {config.siteNavigation.map(({ label, slug }) => (
-                <Link
-                  key={label}
-                  to={slug}
-                  className={`text-base font-medium ${
-                    pathname === slug
-                      ? 'text-white'
-                      : 'text-gray-200 hover:text-white'
-                  } hover:underline`}
-                >
-                  {label}
+    <Popover
+      as="header"
+      className="sticky inset-x-0 top-0 z-20 text-white bg-black"
+    >
+      {({ open }) => (
+        <>
+          <div className="relative shadow">
+            <div className="flex items-center justify-between px-4 py-5 mx-auto max-w-screen-2xl sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
+              <div>
+                <Link to="/" className="flex">
+                  <span className="sr-only">{siteTitle}</span>
+                  <Logo
+                    aria-hidden
+                    className="w-auto h-8 sm:h-10 text-orange"
+                  />
                 </Link>
-              ))}
-            </nav>
+              </div>
+              <div className="-my-2 -mr-2 md:hidden">
+                <Popover.Button className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-white bg-opacity-0 rounded-md text-orange hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange">
+                  <span className="sr-only">Open menu</span>
+                  <HiMenu aria-hidden className="w-6 h-6" />
+                </Popover.Button>
+              </div>
+              <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
+                <nav className="flex justify-end ml-auto space-x-10">
+                  {items.map((item) => {
+                    if (item._type === 'navLink') {
+                      return <NavLink key={item.id} item={item} />;
+                    }
+                    if (item._type === 'navPage') {
+                      return <NavPage key={item.id} item={item} />;
+                    }
+                    if (item._type === 'navDropdown') {
+                      return <NavDropdown key={item.id} item={item} />;
+                    }
+                    return null;
+                  })}
+                </nav>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <MobileMenu isOpen={isOpen} toggle={toggle} />
-    </div>
+          <MobileMenu open={open} />
+        </>
+      )}
+    </Popover>
   );
 }
 
-function MobileMenu({ isOpen, toggle }) {
+interface NavLinkProps {
+  item: INavLink;
+}
+
+function NavLink({ item }: NavLinkProps): React.ReactElement {
+  const { pathname } = useLocation();
   return (
-    <Transition
-      show={isOpen}
-      enterFrom="duration-200 ease-out"
-      enter="opacity-0 scale-95"
-      enterTo="opacity-100 scale-100"
-      leave="duration-100 ease-in"
-      leaveFrom="opacity-100 scale-100"
-      leaveTo="opacity-0 scale-95"
-      className="absolute inset-x-0 top-0 z-30 p-2 transition origin-top-right transform md:hidden"
+    <a
+      key={item.id}
+      href={item.url}
+      className={`text-base font-medium ${
+        pathname === item.url ? 'text-white' : 'text-gray-200 hover:text-white'
+      } hover:underline`}
     >
-      <div className="bg-white divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50">
-        <div className="px-5 pt-5 pb-6 sm:pb-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <img
-                className="w-auto h-8"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
-              />
-            </div>
-            <div className="-mr-2">
-              <button
-                type="button"
-                onClick={toggle}
-                className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-              >
-                <span className="sr-only">Close menu</span>
-                {/* Heroicon name: outline/x */}
-                <svg
-                  className="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className="mt-6 sm:mt-8">
-            <nav>
-              <div className="grid gap-7 sm:grid-cols-2 sm:gap-y-8 sm:gap-x-4">
-                <Link
-                  to="/"
-                  className="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-50"
-                >
-                  <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-indigo-500 rounded-md sm:h-12 sm:w-12">
-                    {/* Heroicon name: outline/chart-bar */}
-                    <svg
-                      className="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-4 text-base font-medium text-gray-900">
-                    Analytics
-                  </div>
-                </Link>
-                <Link
-                  to="/"
-                  className="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-50"
-                >
-                  <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-indigo-500 rounded-md sm:h-12 sm:w-12">
-                    {/* Heroicon name: outline/cursor-click */}
-                    <svg
-                      className="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-4 text-base font-medium text-gray-900">
-                    Engagement
-                  </div>
-                </Link>
-                <Link
-                  to="/"
-                  className="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-50"
-                >
-                  <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-indigo-500 rounded-md sm:h-12 sm:w-12">
-                    {/* Heroicon name: outline/shield-check */}
-                    <svg
-                      className="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-4 text-base font-medium text-gray-900">
-                    Security
-                  </div>
-                </Link>
-                <Link
-                  to="/"
-                  className="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-50"
-                >
-                  <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white bg-indigo-500 rounded-md sm:h-12 sm:w-12">
-                    {/* Heroicon name: outline/view-grid */}
-                    <svg
-                      className="w-6 h-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-4 text-base font-medium text-gray-900">
-                    Integrations
-                  </div>
-                </Link>
+      {item.title}
+    </a>
+  );
+}
+
+interface NavPageProps {
+  item: INavPage;
+}
+
+function NavPage({ item }: NavPageProps): React.ReactElement {
+  const { pathname } = useLocation();
+  return (
+    <Link
+      key={item.id}
+      to={item.page.slug.current}
+      className={`text-base font-medium ${
+        pathname === item.page.slug.current
+          ? 'text-white'
+          : 'text-gray-200 hover:text-white'
+      } hover:underline`}
+    >
+      {item.title}
+    </Link>
+  );
+}
+
+interface NavDropdownProps {
+  item: INavDropdown;
+}
+
+function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
+  return (
+    <Popover className="relative">
+      {({ open }) => (
+        <>
+          <Popover.Button
+            className={classNames(
+              open ? 'text-white' : 'text-gray-200',
+              'group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-black focus:ring-offset-2 focus:ring-orange'
+            )}
+          >
+            <span>{item.title}</span>
+            <ChevronDownIcon
+              className={classNames(
+                open ? 'text-gray-100' : 'text-gray-300',
+                'ml-2 h-5 w-5 group-hover:text-gray-50'
+              )}
+              aria-hidden
+            />
+          </Popover.Button>
+
+          <Transition
+            show={open}
+            as={React.Fragment}
+            enter="transition ease-out duration-200"
+            enterFrom="opacity-0 translate-y-1"
+            enterTo="opacity-100 translate-y-0"
+            leave="transition ease-in duration-150"
+            leaveFrom="opacity-100 translate-y-0"
+            leaveTo="opacity-0 translate-y-1"
+          >
+            <Popover.Panel
+              static
+              className="absolute z-10 w-screen max-w-xs px-2 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0"
+            >
+              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                <div className="relative grid gap-6 p-8 bg-white sm:gap-8">
+                  {item.dropdownItems.map((dropdownItem) => {
+                    if (dropdownItem._type === 'navLink') {
+                      return (
+                        <NavDropdownLink key={item.id} item={dropdownItem} />
+                      );
+                    }
+                    if (dropdownItem._type === 'navPage') {
+                      return (
+                        <NavDropdownPage key={item.id} item={dropdownItem} />
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
               </div>
-              <div className="mt-8 text-base">
-                <Link
-                  to="/"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {' '}
-                  View all products <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </nav>
-          </div>
-        </div>
-        <div className="px-5 py-6">
-          <div className="grid grid-cols-2 gap-4">
-            <Link
-              to="/"
-              className="text-base font-medium text-gray-900 rounded-md hover:text-gray-700"
-            >
-              Pricing
-            </Link>
-            <Link
-              to="/"
-              className="text-base font-medium text-gray-900 rounded-md hover:text-gray-700"
-            >
-              Docs
-            </Link>
-            <Link
-              to="/"
-              className="text-base font-medium text-gray-900 rounded-md hover:text-gray-700"
-            >
-              Company
-            </Link>
-            <Link
-              to="/"
-              className="text-base font-medium text-gray-900 rounded-md hover:text-gray-700"
-            >
-              Resources
-            </Link>
-            <Link
-              to="/"
-              className="text-base font-medium text-gray-900 rounded-md hover:text-gray-700"
-            >
-              Blog
-            </Link>
-            <Link
-              to="/"
-              className="text-base font-medium text-gray-900 rounded-md hover:text-gray-700"
-            >
-              Contact Sales
-            </Link>
-          </div>
-          <div className="mt-6">
-            <Link
-              to="/"
-              className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
-            >
-              Sign up
-            </Link>
-            <p className="mt-6 text-base font-medium text-center text-gray-500">
-              Existing customer?{' '}
-              <Link to="/" className="text-indigo-600 hover:text-indigo-500">
-                Sign in
-              </Link>
-            </p>
-          </div>
-        </div>
-      </div>
-    </Transition>
+            </Popover.Panel>
+          </Transition>
+        </>
+      )}
+    </Popover>
+  );
+}
+
+function NavDropdownLink({ item }: NavLinkProps): React.ReactElement {
+  return (
+    <a
+      key={item.id}
+      href={item.url}
+      className="block p-3 -m-3 transition duration-150 ease-in-out rounded-md hover:bg-gray-50"
+    >
+      <p className="text-base font-medium text-gray-900">{item.title}</p>
+    </a>
+  );
+}
+
+function NavDropdownPage({ item }: NavPageProps): React.ReactElement {
+  return (
+    <Link
+      key={item.id}
+      to={item.page.slug.current}
+      className="block p-3 -m-3 transition duration-150 ease-in-out rounded-md hover:bg-gray-50"
+    >
+      <p className="text-base font-medium text-gray-900">{item.title}</p>
+    </Link>
   );
 }
 
