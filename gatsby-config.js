@@ -1,9 +1,13 @@
-const config = require('./config.json');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: '.env' });
+
+// Check what node environment is running for Sanity plugin
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   siteMetadata: {
-    title: config.siteTitle,
-    siteUrl: config.siteUrl,
+    siteUrl: 'https://bydenhomes.netlify.app',
   },
   flags: {
     DEV_SSR: true,
@@ -62,8 +66,21 @@ module.exports = {
     {
       resolve: 'gatsby-source-sanity',
       options: {
-        projectId: 'dki5l4zp',
-        dataset: 'production',
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_DATASET,
+
+        // Set to `true` in order for drafts to replace their published version. By default, drafts will be skipped.
+        overlayDrafts: !isProd,
+
+        // Set to `true` to keep a listener open and update with the latest changes in realtime. If you add a `token` you will get all content updates down to each keypress.
+        watchMode: !isProd,
+
+        // Authentication token for fetching data from private datasets, or when using overlayDrafts
+        token: process.env.SANITY_TOKEN,
+
+        // If the Sanity GraphQL API was deployed using `--tag <name>`,
+        // use `graphqlTag` to specify the tag name. Defaults to `default`.
+        graphqlTag: 'default',
       },
     },
   ],
