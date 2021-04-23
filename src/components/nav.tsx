@@ -23,7 +23,7 @@ function Nav(): React.ReactElement {
   return (
     <Popover
       as="header"
-      className="sticky inset-x-0 top-0 z-20 text-white bg-black"
+      className="sticky inset-x-0 top-0 z-20 text-type bg-background"
     >
       {({ open }) => (
         <>
@@ -34,12 +34,12 @@ function Nav(): React.ReactElement {
                   <span className="sr-only">{siteTitle}</span>
                   <Logo
                     aria-hidden
-                    className="w-auto h-8 sm:h-10 text-orange"
+                    className="w-auto h-8 sm:h-10 text-primary"
                   />
                 </Link>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
-                <Popover.Button className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-white bg-opacity-0 rounded-md text-orange hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange">
+                <Popover.Button className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-type bg-opacity-0 rounded-md text-primary hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
                   <span className="sr-only">Open menu</span>
                   <HiMenu aria-hidden className="w-6 h-6" />
                 </Popover.Button>
@@ -47,16 +47,19 @@ function Nav(): React.ReactElement {
               <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
                 <nav className="flex justify-end ml-auto space-x-10">
                   {items.map((item) => {
-                    if (item._type === 'navLink') {
-                      return <NavLink key={item.id} item={item} />;
+                    switch (item._type) {
+                      case 'navLink':
+                        return <NavLink key={item.id} item={item} />;
+
+                      case 'navPage':
+                        return <NavPage key={item.id} item={item} />;
+
+                      case 'navDropdown':
+                        return <NavDropdown key={item.id} item={item} />;
+
+                      default:
+                        return null;
                     }
-                    if (item._type === 'navPage') {
-                      return <NavPage key={item.id} item={item} />;
-                    }
-                    if (item._type === 'navDropdown') {
-                      return <NavDropdown key={item.id} item={item} />;
-                    }
-                    return null;
                   })}
                 </nav>
               </div>
@@ -80,7 +83,7 @@ function NavLink({ item }: NavLinkProps): React.ReactElement {
       key={item.id}
       href={item.url}
       className={`text-base font-medium ${
-        pathname === item.url ? 'text-white' : 'text-gray-200 hover:text-white'
+        pathname === item.url ? 'text-type' : 'text-gray-200 hover:text-type'
       } hover:underline`}
     >
       {item.title}
@@ -100,8 +103,8 @@ function NavPage({ item }: NavPageProps): React.ReactElement {
       to={item.page.slug.current}
       className={`text-base font-medium ${
         pathname === item.page.slug.current
-          ? 'text-white'
-          : 'text-gray-200 hover:text-white'
+          ? 'text-type'
+          : 'text-gray-200 hover:text-type'
       } hover:underline`}
     >
       {item.title}
@@ -120,8 +123,8 @@ function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
         <>
           <Popover.Button
             className={classNames(
-              open ? 'text-white' : 'text-gray-200',
-              'group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-black focus:ring-offset-2 focus:ring-orange'
+              open ? 'text-type' : 'text-gray-200',
+              'group rounded-md inline-flex items-center text-base font-medium hover:text-type focus:outline-none focus:ring-2 focus:ring-offset-background focus:ring-offset-2 focus:ring-primary'
             )}
           >
             <span>{item.title}</span>
@@ -148,8 +151,8 @@ function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
               static
               className="absolute z-10 w-screen max-w-xs px-2 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0"
             >
-              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                <div className="relative grid gap-6 p-8 bg-white sm:gap-8">
+              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-background ring-opacity-5">
+                <div className="relative grid gap-6 p-8 bg-type sm:gap-8">
                   {item.dropdownItems.map((dropdownItem) => {
                     if (dropdownItem._type === 'navLink') {
                       return (

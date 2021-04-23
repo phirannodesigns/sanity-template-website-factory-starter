@@ -1,50 +1,12 @@
-import { graphql, Link } from 'gatsby';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import { graphql } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
+import { ButtonLink } from '../components/button-link';
+import { IHero } from '../components/hero';
 import { Layout } from '../components/layout';
+import { SanityModules } from '../components/sanity-modules';
 import { SEO } from '../components/seo';
-
-interface IHero {
-  id: string;
-  _type: 'hero';
-  bgType: 'photo' | 'video';
-  heading: Array<{
-    id: string;
-    isBold: boolean | undefined;
-    text: string;
-  }>;
-  link: {
-    isButton: boolean | undefined;
-    page: {
-      title: string;
-      slug: {
-        current: string;
-      };
-    };
-    styles: {
-      isBlock: boolean | undefined;
-      isLarge: boolean | undefined;
-      style: 'is-primary' | 'is-outline';
-    };
-    title: string;
-    url: string | null;
-  };
-  photos: {
-    desktopImage: {
-      asset: {
-        altText: string | null;
-        gatsbyImageData: IGatsbyImageData;
-      };
-    };
-    mobileImage: {
-      asset: {
-        altText: string | null;
-        gatsbyImageData: IGatsbyImageData;
-      };
-    };
-  };
-}
 
 interface IGrid {
   id: string;
@@ -81,73 +43,61 @@ function IndexPage({ data }: IndexPageProps): React.ReactElement {
     <>
       <SEO title={seo.metaTitle} image={seo.shareGraphic.asset.url} />
       <Layout>
-        {modules.map((module) => {
-          switch (module._type) {
-            case 'grid':
-              return null;
-
-            case 'hero':
-              return <Hero key={module.id} hero={module} />;
-
-            case 'dividerPhoto':
-              return null;
-
-            default:
-              return null;
-          }
-        })}
+        <SanityModules modules={modules} />
+        <CopyWithImage />
       </Layout>
     </>
   );
 }
 
-interface HeroProps {
-  hero: IHero;
-}
-
-function Hero({ hero }: HeroProps): React.ReactElement {
+function CopyWithImage() {
   return (
-    <div className="relative">
-      <div className="aspect-w-16 aspect-h-9">
-        <div className="flex">
-          <GatsbyImage
-            image={hero.photos.desktopImage.asset.gatsbyImageData}
-            alt={hero.photos.desktopImage.asset.altText || ''}
-            className="flex-1"
-          />
-        </div>
-        <div className="flex flex-col items-center justify-center text-center bg-black bg-opacity-25">
-          <h1 className="font-bold text-white">
-            {hero.heading.map((line, index) => (
-              <React.Fragment key={line.id}>
-                <span
-                  className={`text-5xl inline-block leading-tight ${
-                    line.isBold ? 'uppercase' : ''
-                  }`}
-                >
-                  {line.text}
-                </span>
-                {index !== hero.heading.length - 1 ? <br /> : null}
-              </React.Fragment>
-            ))}
-          </h1>
-          <p className="mt-2">
-            {hero.link.page ? (
-              <Link
-                to={hero.link.page.slug.current}
-                className={
-                  hero.link.isButton
-                    ? 'inline-block text-white bg-orange px-6 py-2 uppercase font-bold tracking-wider'
-                    : ''
-                }
-              >
-                {hero.link.page.title}
-              </Link>
-            ) : null}
-          </p>
+    <div className="bg-gray-50">
+      <div className="w-full px-4 py-12 mx-auto lg:py-24 max-w-screen-2xl sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="relative order-last bg-primary lg:order-none">
+            <StaticImage
+              src="https://images.unsplash.com/photo-1595844730289-b248c919d6f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
+              alt=""
+              className="h-full"
+            />
+          </div>
+          <div className="pb-5 lg:py-12">
+            <div className="prose">
+              <h2 className="!text-4xl !font-semibold !mb-4">Our Story</h2>
+              <p>
+                Lorem ipsum dolor sit amet, noster latine interpretaris cum ut,
+                per et mundi vidisse platonem. Te recusabo interpretaris duo,
+                mei melius mentitum ne, est an iisque quaestio. Ad illum diceret
+                pri. Volumus accusamus intellegebat cu mel, ad ludus dolor
+                postulant mea.
+              </p>
+              <p>
+                Et sit mollis pertinax, pro persius virtute mediocritatem an.
+                Inermis appellantur nam ei, has id placerat principes. Admodum
+                luptatum ne pro. Vix at equidem similique, mei an iuvaret
+                eruditi abhorreant, te per iriure elaboraret. Odio animal
+                omittantur et duo, stet saperet ponderum mel te.
+              </p>
+            </div>
+            <p className="mt-5">
+              <ButtonLink
+                link={{
+                  isButton: true,
+                  page: null,
+                  styles: {
+                    isBlock: false,
+                    isLarge: true,
+                    style: 'is-outline',
+                  },
+                  title: 'Contact Us',
+                  url: 'https://www.google.com/',
+                }}
+              />
+            </p>
+          </div>
         </div>
       </div>
-      <h1>Hello</h1>
     </div>
   );
 }

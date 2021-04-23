@@ -15,7 +15,7 @@
   display: flex;
   overflow: auto;
   padding: var(--large-padding);
-  background-color: color(var(--white) blend(var(--gray-base) 5%));
+  background-color: color(var(--type) blend(var(--gray-base) 5%));
   border-top: 1px solid var(--hairline-color);
   border-bottom: 1px solid var(--hairline-color);
 }

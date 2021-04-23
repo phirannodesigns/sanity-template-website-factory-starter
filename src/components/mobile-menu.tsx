@@ -35,16 +35,16 @@ function MobileMenu({ open }: MobileMenuProps): React.ReactElement {
         static
         className="absolute inset-x-0 top-0 p-2 transition origin-top transform md:hidden"
       >
-        <div className="overflow-hidden bg-black rounded-lg shadow-md ring-1 ring-black ring-opacity-5">
+        <div className="overflow-hidden rounded-lg shadow-md bg-background ring-1 ring-background ring-opacity-5">
           <div className="flex items-center justify-between px-5 pt-4">
             <div>
               <Link to="/" className="flex">
                 <span className="sr-only">{siteTitle}</span>
-                <Logo aria-hidden className="w-auto h-8 sm:h-10 text-orange" />
+                <Logo aria-hidden className="w-auto h-8 sm:h-10 text-primary" />
               </Link>
             </div>
             <div className="-mr-2">
-              <Popover.Button className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-white bg-opacity-0 rounded-md text-orange hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange">
+              <Popover.Button className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-opacity-0 rounded-md bg-type text-primary hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
                 <span className="sr-only">Close menu</span>
                 <XIcon className="w-6 h-6" aria-hidden="true" />
               </Popover.Button>
@@ -68,7 +68,7 @@ function MobileMenu({ open }: MobileMenuProps): React.ReactElement {
             <div className="px-5 mt-6">
               <a
                 href="/#"
-                className="block w-full px-4 py-3 font-medium text-center text-white rounded-md shadow bg-orange hover:bg-indigo-700"
+                className="block w-full px-4 py-3 font-medium text-center rounded-md shadow text-type bg-primary hover:bg-indigo-700"
               >
                 Call
               </a>
@@ -88,7 +88,7 @@ function NavLink({ item }: NavLinkProps): React.ReactElement {
   return (
     <a
       href={item.url}
-      className="block px-3 py-2 text-base font-medium text-gray-200 rounded-md hover:bg-white hover:bg-opacity-25"
+      className="block px-3 py-2 text-base font-medium text-gray-200 rounded-md hover:bg-type hover:bg-opacity-25"
     >
       {item.title}
     </a>
@@ -103,7 +103,7 @@ function NavPage({ item }: NavPageProps): React.ReactElement {
   return (
     <Link
       to={item.page.slug.current}
-      className="block px-3 py-2 text-base font-medium text-gray-200 rounded-md hover:bg-white hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange"
+      className="block px-3 py-2 text-base font-medium text-gray-200 rounded-md hover:bg-type hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
     >
       {item.title}
     </Link>
@@ -119,13 +119,13 @@ function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
     <Disclosure>
       {({ open }) => (
         <>
-          <Disclosure.Button className="flex justify-between w-full px-3 py-2 text-base font-medium text-left text-gray-200 bg-white bg-opacity-0 rounded-md rounded-lg hover:bg-white hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange">
+          <Disclosure.Button className="flex justify-between w-full px-3 py-2 text-base font-medium text-left text-gray-200 bg-opacity-0 rounded-md bg-type hover:bg-type hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
             <span>{item.title}</span>
             <ChevronLeftIcon
               aria-hidden
               className={`${
                 open ? 'transform -rotate-90' : ''
-              } w-5 h-5 text-orange`}
+              } w-5 h-5 text-primary`}
             />
           </Disclosure.Button>
           <Transition
@@ -140,7 +140,7 @@ function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
           >
             <Disclosure.Panel
               static
-              className="rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange"
+              className="rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
             >
               {item.dropdownItems.map((dropdownItem) => {
                 if (dropdownItem._type === 'navLink') {

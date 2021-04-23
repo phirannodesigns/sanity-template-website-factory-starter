@@ -8,12 +8,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        orange: {
+        primary: {
           DEFAULT: '#ea612a',
         },
+        background: {
+          DEFAULT: '#000000',
+        },
+        type: {
+          DEFAULT: '#ffffff',
+        }
       },
       fontFamily: {
-        sans: ['Avenir Next', ...defaultTheme.fontFamily.sans],
+        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
     },
   },

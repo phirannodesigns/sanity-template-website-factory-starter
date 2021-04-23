@@ -4,5 +4,6 @@
 
 ## Manual Sets
 
-- In `studio/deskStructure.js` set `remoteURL`
+- Update `siteUrl` in `gatsby-config.js`
 - Update `src/images/favicon.png` with customers favicon (needs to be 512px × 512px)
+- In `studio/deskStructure.js` set `remoteURL`

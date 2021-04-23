@@ -76,7 +76,7 @@ li[class*='moving'] * {
   border-color: var(--theme-pageText);
 }
 
-.btn.is-white {
+.btn.is-type {
   background: white !important;
   color: var(--theme-pageText) !important;
   border-color: white;
