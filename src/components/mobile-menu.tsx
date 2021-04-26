@@ -3,6 +3,7 @@ import { ChevronLeftIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'gatsby';
 import * as React from 'react';
 
+import { useSanityGeneralSettings } from '../hooks/use-sanity-general-settings';
 import {
   INavDropdown,
   INavLink,
@@ -19,6 +20,7 @@ interface MobileMenuProps {
 function MobileMenu({ open }: MobileMenuProps): React.ReactElement {
   const { items } = useSanityMenu();
   const { siteTitle } = useSanitySEOSettings();
+  const { phoneNumber } = useSanityGeneralSettings();
   return (
     <Transition
       show={open}
@@ -38,7 +40,10 @@ function MobileMenu({ open }: MobileMenuProps): React.ReactElement {
         <div className="overflow-hidden rounded-lg shadow-md bg-background ring-1 ring-background ring-opacity-5">
           <div className="flex items-center justify-between px-5 pt-4">
             <div>
-              <Link to="/" className="flex">
+              <Link
+                to="/"
+                className="flex p-2 -mt-2 -ml-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+              >
                 <span className="sr-only">{siteTitle}</span>
                 <Logo aria-hidden className="w-auto h-8 sm:h-10 text-primary" />
               </Link>
@@ -67,10 +72,10 @@ function MobileMenu({ open }: MobileMenuProps): React.ReactElement {
             </div>
             <div className="px-5 mt-6">
               <a
-                href="/#"
-                className="block w-full px-4 py-3 font-medium text-center rounded-md shadow text-type bg-primary hover:bg-indigo-700"
+                href={`tel:${phoneNumber}`}
+                className="block w-full px-4 py-3 font-medium text-center shadow text-type bg-primary"
               >
-                Call
+                Call: {phoneNumber}
               </a>
             </div>
           </div>
