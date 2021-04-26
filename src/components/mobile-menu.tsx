@@ -133,7 +133,7 @@ function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
               } w-5 h-5 text-primary`}
             />
           </Disclosure.Button>
-          <Transition
+          {/* <Transition
             show={open}
             as={React.Fragment}
             enter="transition ease-out duration-100"
@@ -142,22 +142,22 @@ function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
             leave="transition ease-in duration-75"
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
+          > */}
+          <Disclosure.Panel
+            // static
+            className="rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
           >
-            <Disclosure.Panel
-              static
-              className="rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
-            >
-              {item.dropdownItems.map((dropdownItem) => {
-                if (dropdownItem._type === 'navLink') {
-                  return <NavLink item={dropdownItem} />;
-                }
-                if (dropdownItem._type === 'navPage') {
-                  return <NavPage item={dropdownItem} />;
-                }
-                return null;
-              })}
-            </Disclosure.Panel>
-          </Transition>
+            {item.dropdownItems.map((dropdownItem) => {
+              if (dropdownItem._type === 'navLink') {
+                return <NavLink item={dropdownItem} />;
+              }
+              if (dropdownItem._type === 'navPage') {
+                return <NavPage item={dropdownItem} />;
+              }
+              return null;
+            })}
+          </Disclosure.Panel>
+          {/* </Transition> */}
         </>
       )}
     </Disclosure>
