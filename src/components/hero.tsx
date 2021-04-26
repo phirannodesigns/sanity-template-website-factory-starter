@@ -36,15 +36,15 @@ interface HeroProps {
 function Hero({ hero }: HeroProps): React.ReactElement {
   return (
     <div className="relative">
-      <div className="aspect-w-16 aspect-h-9">
-        <div className="flex">
+      <div className="md:aspect-w-16 md:aspect-h-9">
+        <div className="absolute inset-0 flex md:inset-auto">
           <GatsbyImage
             image={hero.photos.desktopImage.asset.gatsbyImageData}
             alt={hero.photos.desktopImage.asset.altText || ''}
             className="flex-1"
           />
         </div>
-        <div className="flex flex-col items-center justify-center text-center bg-background bg-opacity-25">
+        <div className="relative flex flex-col items-center justify-center py-12 text-center bg-opacity-25 bg-background">
           <h1 className="font-semibold text-type">
             {hero.heading.map((line, index) => (
               <React.Fragment key={line.id}>
