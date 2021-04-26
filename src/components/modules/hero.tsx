@@ -1,7 +1,7 @@
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import * as React from 'react';
 
-import { ButtonLink, IButtonLink } from './button-link';
+import { ButtonLink, IButtonLink } from '../button-link';
 
 interface IHero {
   id: string;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Hero, IHero } from './hero';
+import { Hero, IHero } from './modules/hero';
 
 interface IGrid {
   id: string;
