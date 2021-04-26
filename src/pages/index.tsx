@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import * as React from 'react';
 
 import { Layout } from '../components/layout';
-import { CopyWithImage } from '../components/modules/copy-with-image';
+import { ISanityCopyWithImage } from '../components/modules/copy-with-image';
 import { IHero } from '../components/modules/hero';
 import { SanityModules } from '../components/sanity-modules';
 import { SEO } from '../components/seo';
@@ -20,7 +20,7 @@ interface IDividerPhoto {
 interface IndexPageProps {
   data: {
     sanityHomePage: {
-      modules: Array<IHero | IGrid | IDividerPhoto>;
+      modules: Array<IHero | ISanityCopyWithImage | IGrid | IDividerPhoto>;
       seo: {
         metaDesc: string;
         metaTitle: string;
@@ -43,7 +43,6 @@ function IndexPage({ data }: IndexPageProps): React.ReactElement {
       <SEO title={seo.metaTitle} image={seo.shareGraphic.asset.url} />
       <Layout>
         <SanityModules modules={modules} />
-        <CopyWithImage />
       </Layout>
     </>
   );
@@ -87,7 +86,7 @@ export const query = graphql`
             desktopImage {
               asset {
                 altText
-                gatsbyImageData
+                gatsbyImageData(width: 768)
               }
             }
             mobileImage {
@@ -95,6 +94,26 @@ export const query = graphql`
                 altText
                 gatsbyImageData
               }
+            }
+          }
+        }
+        ... on SanityCopyWithImage {
+          id: _key
+          _type
+          modules {
+            ... on SanityFigure {
+              id: _key
+              _type
+              alt
+              asset {
+                gatsbyImageData
+              }
+              customRatio
+            }
+            ... on SanityCopy {
+              id: _key
+              _type
+              _rawComplexPortableText
             }
           }
         }

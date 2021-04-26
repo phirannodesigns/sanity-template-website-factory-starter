@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { CopyWithImage, ISanityCopyWithImage } from './modules/copy-with-image';
 import { Hero, IHero } from './modules/hero';
 
 interface IGrid {
@@ -13,7 +14,7 @@ interface IDividerPhoto {
 }
 
 interface SanityModulesProps {
-  modules: Array<IHero | IGrid | IDividerPhoto>;
+  modules: Array<IHero | ISanityCopyWithImage | IGrid | IDividerPhoto>;
 }
 
 function SanityModules({ modules }: SanityModulesProps): React.ReactElement {
@@ -23,6 +24,9 @@ function SanityModules({ modules }: SanityModulesProps): React.ReactElement {
         switch (module._type) {
           case 'hero':
             return <Hero key={module.id} hero={module} />;
+
+          case 'copyWithImage':
+            return <CopyWithImage key={module.id} copyWithImage={module} />;
 
           case 'grid':
             return null;
