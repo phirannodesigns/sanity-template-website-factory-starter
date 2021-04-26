@@ -114,6 +114,27 @@ export const query = graphql`
               id: _key
               _type
               _rawComplexPortableText
+              link {
+                isButton
+                page {
+                  ... on SanityHomePage {
+                    _type
+                  }
+                  ... on SanityPage {
+                    title
+                    slug {
+                      current
+                    }
+                  }
+                }
+                styles {
+                  isBlock
+                  isLarge
+                  style
+                }
+                title
+                url
+              }
             }
           }
         }
