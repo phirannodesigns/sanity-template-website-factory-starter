@@ -39,7 +39,7 @@ function Nav(): React.ReactElement {
                 </Link>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
-                <Popover.Button className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-type bg-opacity-0 rounded-md text-primary hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                <Popover.Button className="inline-flex items-center justify-center p-2 transition duration-150 ease-in-out bg-opacity-0 rounded-md bg-type text-primary hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
                   <span className="sr-only">Open menu</span>
                   <HiMenu aria-hidden className="w-6 h-6" />
                 </Popover.Button>
