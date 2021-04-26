@@ -36,13 +36,13 @@ function CopyWithImage({
 }: CopyWithImageProps): React.ReactElement {
   return (
     <div className="bg-gray-50">
-      <div className="w-full px-4 py-12 mx-auto lg:py-24 max-w-screen-2xl sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-2">
+      <div className="w-full px-4 py-12 mx-auto max-w-prose lg:py-24 lg:max-w-screen-2xl sm:px-6 lg:px-8">
+        <div className="grid items-center gap-8 lg:grid-cols-2">
           {copyWithImage.modules.map((module) => {
             switch (module._type) {
               case 'figure':
                 return (
-                  <div className="relative order-last bg-primary lg:order-none">
+                  <div className="relative order-last lg:order-none">
                     <div
                       className="relative overflow-hidden"
                       style={{ paddingBottom: `${100 / module.customRatio}%` }}
@@ -61,27 +61,16 @@ function CopyWithImage({
               case 'copy':
                 return (
                   <div className="pb-5 lg:py-12">
-                    <div className="prose">
-                      <BlockContent
-                        renderContainerOnSingleChild
-                        blocks={module._rawComplexPortableText}
-                      />
-                    </div>
-                    <p className="mt-5">
-                      <ButtonLink
-                        link={{
-                          isButton: true,
-                          page: null,
-                          styles: {
-                            isBlock: false,
-                            isLarge: true,
-                            style: 'is-outline',
-                          },
-                          title: 'Contact Us',
-                          url: 'https://www.google.com/',
-                        }}
-                      />
-                    </p>
+                    <BlockContent
+                      renderContainerOnSingleChild
+                      blocks={module._rawComplexPortableText}
+                      className="prose"
+                    />
+                    {module.link ? (
+                      <p className="mt-5">
+                        <ButtonLink link={module.link} />
+                      </p>
+                    ) : null}
                   </div>
                 );
 
