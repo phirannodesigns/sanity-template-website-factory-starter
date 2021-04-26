@@ -10,7 +10,12 @@ export default {
       title: 'Page Modules',
       name: 'modules',
       type: 'array',
-      of: [{ type: 'grid' }, { type: 'hero' }, { type: 'dividerPhoto' }],
+      of: [
+        { type: 'hero' },
+        { type: 'copyWithImage' },
+        { type: 'grid' },
+        { type: 'dividerPhoto' },
+      ],
     },
     {
       title: 'SEO / Share Settings',

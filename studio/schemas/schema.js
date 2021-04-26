@@ -18,9 +18,9 @@ import grid from './modules/grid'
 import gridColumn from './modules/grid-column'
 import gridSize from './modules/grid-size'
 import hero from './modules/hero'
+import copyWithImage from './modules/copy-with-image'
 import dividerPhoto from './modules/divider-photo'
 import newsletter from './modules/newsletter'
-import productHero from './modules/product-hero'
 import collectionGrid from './modules/collection-grid'
 
 // Block types
@@ -29,13 +29,6 @@ import accordions from './blocks/accordions'
 
 // Object types
 import seo from './objects/seo'
-
-import productGalleryPhotos from './objects/product-gallery-photos'
-import productListingPhotos from './objects/product-listing-photos'
-import productCartPhotos from './objects/product-cart-photos'
-import productOption from './objects/product-option'
-import productOptionValue from './objects/product-option-value'
-import productOptionSettings from './objects/product-option-settings'
 
 import link from './objects/link'
 import headingLine from './objects/heading-line'
@@ -49,6 +42,7 @@ import googleMaps from './objects/google-maps'
 
 import simplePortableText from './objects/portable-simple'
 import complexPortableText from './objects/portable-complex'
+import copy from './objects/copy'
 import styles from './objects/styles'
 
 import accordion from './objects/accordion'
@@ -85,9 +79,9 @@ export default createSchema({
     gridColumn,
     gridSize,
     hero,
+    copyWithImage,
     dividerPhoto,
     newsletter,
-    productHero,
     collectionGrid,
 
     /* -------------- */
@@ -98,13 +92,6 @@ export default createSchema({
     /* ----------------------- */
     /* 4: Generic Object types */
     seo,
-
-    productGalleryPhotos,
-    productListingPhotos,
-    productCartPhotos,
-    productOption,
-    productOptionValue,
-    productOptionSettings,
 
     link,
     headingLine,
@@ -118,6 +105,7 @@ export default createSchema({
 
     simplePortableText,
     complexPortableText,
+    copy,
     styles,
 
     accordion,
