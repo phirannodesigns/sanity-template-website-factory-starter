@@ -25,10 +25,12 @@ function Footer(): React.ReactElement {
         <div className="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-4">
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <Link to="/" className="flex">
-                <span className="sr-only">{siteTitle}</span>
-                <Logo aria-hidden className="w-auto h-14 text-background" />
-              </Link>
+              <div>
+                <Link to="/" className="inline-block p-2 -m-2">
+                  <span className="sr-only">{siteTitle}</span>
+                  <Logo aria-hidden className="w-auto h-14 text-background" />
+                </Link>
+              </div>
               <div>
                 <ul className="space-y-4">
                   {items.map((item) => {
@@ -103,10 +105,12 @@ function Footer(): React.ReactElement {
                             href={url}
                             target="_blank"
                             rel="noreferrer noopener"
+                            className="inline-block"
                           >
                             {getIcon({
                               socialNetwork: icon,
-                              className: 'w-5 h-5 text-background',
+                              className:
+                                'w-6 h-6 text-background text-opacity-75',
                             })}
                           </a>
                         </li>

@@ -30,7 +30,10 @@ function Nav(): React.ReactElement {
           <div className="relative shadow">
             <div className="flex items-center justify-between px-4 py-5 mx-auto max-w-screen-2xl sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
               <div>
-                <Link to="/" className="flex">
+                <Link
+                  to="/"
+                  className="flex p-2 -m-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+                >
                   <span className="sr-only">{siteTitle}</span>
                   <Logo
                     aria-hidden
@@ -79,15 +82,17 @@ interface NavLinkProps {
 function NavLink({ item }: NavLinkProps): React.ReactElement {
   const { pathname } = useLocation();
   return (
-    <a
-      key={item.id}
-      href={item.url}
-      className={`text-base font-medium ${
-        pathname === item.url ? 'text-type' : 'text-gray-200 hover:text-type'
-      } hover:underline`}
-    >
-      {item.title}
-    </a>
+    <div>
+      <a
+        key={item.id}
+        href={item.url}
+        className={`px-2 -mx-2 text-base font-medium ${
+          pathname === item.url ? 'text-type' : 'text-gray-200 hover:text-type'
+        } hover:underline focus:outline-none focus:ring-2 focus:ring-offset-background focus:ring-offset-2 focus:ring-primary`}
+      >
+        {item.title}
+      </a>
+    </div>
   );
 }
 
@@ -95,20 +100,24 @@ interface NavPageProps {
   item: INavPage;
 }
 
+// text-type group inline-flex items-center text-base font-medium hover:text-type
+
 function NavPage({ item }: NavPageProps): React.ReactElement {
   const { pathname } = useLocation();
   return (
-    <Link
-      key={item.id}
-      to={item.page.slug.current}
-      className={`text-base font-medium ${
-        pathname === item.page.slug.current
-          ? 'text-type'
-          : 'text-gray-200 hover:text-type'
-      } hover:underline`}
-    >
-      {item.title}
-    </Link>
+    <div>
+      <Link
+        key={item.id}
+        to={item.page.slug.current}
+        className={`px-2 -mx-2 text-base font-medium rounded-md ${
+          pathname === item.page.slug.current
+            ? 'text-type'
+            : 'text-gray-200 hover:text-type'
+        } hover:underline focus:outline-none focus:ring-2 focus:ring-offset-background focus:ring-offset-2 focus:ring-primary`}
+      >
+        {item.title}
+      </Link>
+    </div>
   );
 }
 
@@ -124,7 +133,7 @@ function NavDropdown({ item }: NavDropdownProps): React.ReactElement {
           <Popover.Button
             className={classNames(
               open ? 'text-type' : 'text-gray-200',
-              'group rounded-md inline-flex items-center text-base font-medium hover:text-type focus:outline-none focus:ring-2 focus:ring-offset-background focus:ring-offset-2 focus:ring-primary'
+              'inline-flex items-center px-2 -mx-2 text-base font-medium rounded-md group hover:text-type focus:outline-none focus:ring-2 focus:ring-offset-background focus:ring-offset-2 focus:ring-primary'
             )}
           >
             <span>{item.title}</span>

@@ -42,7 +42,7 @@ function MobileMenu({ open }: MobileMenuProps): React.ReactElement {
             <div>
               <Link
                 to="/"
-                className="flex p-2 -mt-2 -ml-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+                className="flex p-2 -m-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
               >
                 <span className="sr-only">{siteTitle}</span>
                 <Logo aria-hidden className="w-auto h-8 sm:h-10 text-primary" />
