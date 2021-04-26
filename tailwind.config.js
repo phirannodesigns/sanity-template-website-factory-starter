@@ -16,7 +16,7 @@ module.exports = {
         },
         type: {
           DEFAULT: '#ffffff',
-        }
+        },
       },
       fontFamily: {
         sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
