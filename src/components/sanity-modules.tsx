@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { CopyWithImage, ISanityCopyWithImage } from './modules/copy-with-image';
 import { Hero, IHero } from './modules/hero';
+import { ServicesGrid } from './modules/services-grid';
 
 interface IGrid {
   id: string;
@@ -38,6 +39,7 @@ function SanityModules({ modules }: SanityModulesProps): React.ReactElement {
             return null;
         }
       })}
+      <ServicesGrid />
     </>
   );
 }
