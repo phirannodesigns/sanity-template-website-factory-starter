@@ -21,6 +21,21 @@ module.exports = {
       fontFamily: {
         sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            // className="!text-4xl !font-semibold !mb-4"
+            'h1, h2, h3, h4': {
+              fontWeight: theme('fontWeight.semibold'),
+            },
+            h2: {
+              fontSize: theme('fontSize.4xl'),
+              lineHeight: theme('lineHeight.10'),
+              marginBottom: theme('margin.4'),
+            },
+          },
+        },
+      }),
     },
   },
   variants: {
