@@ -19,7 +19,7 @@ interface IPageButton {
   };
   styles: IStyles;
   title: string;
-  url: null;
+  url: never;
 }
 
 interface IURLButton {
