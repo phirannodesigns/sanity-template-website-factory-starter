@@ -1,16 +1,29 @@
 {
+  "name": "website-factory-starter",
+  "private": true,
+  "version": "1.0.0",
   "author": "Luke Bennett <l.bennett@phirannodesigns.com.au>",
+  "main": "package.json",
+  "scripts": {
+    "build": "sanity build",
+    "deploy": "npm run deploy:studio && npm run deploy:graphql",
+    "deploy:graphql": "sanity graphql deploy --playground",
+    "deploy:studio": "sanity deploy",
+    "dev": "sanity start",
+    "eslint": "eslint --color --ext .js,.json,.jsx,.ts,.tsx .",
+    "eslint:fix": "npm run eslint -- --fix"
+  },
   "dependencies": {
-    "@sanity/base": "^2.8.1",
-    "@sanity/cli": "^2.8.0",
+    "@sanity/base": "^2.10.0",
+    "@sanity/cli": "^2.10.0",
     "@sanity/color-input": "^2.2.6",
     "@sanity/components": "^2.2.6",
-    "@sanity/core": "^2.8.0",
+    "@sanity/core": "^2.10.0",
     "@sanity/dashboard": "^2.7.0",
-    "@sanity/default-layout": "^2.8.1",
+    "@sanity/default-layout": "^2.10.0",
     "@sanity/default-login": "^2.8.0",
-    "@sanity/desk-tool": "^2.8.1",
-    "@sanity/vision": "^2.8.0",
+    "@sanity/desk-tool": "^2.10.1",
+    "@sanity/vision": "^2.10.0",
     "bcp47": "^1.1.2",
     "nanoid": "^3.1.22",
     "prop-types": "^15.7.2",
@@ -29,20 +42,7 @@
     "eslint-config-sanity": "^5.1.0",
     "eslint-plugin-react": "^7.23.2"
   },
-  "main": "package.json",
-  "name": "website-factory-starter",
   "peerDependencies": {
     "styled-components": "^5.2.3"
-  },
-  "private": true,
-  "scripts": {
-    "build": "sanity build",
-    "deploy": "npm run deploy:studio && npm run deploy:graphql",
-    "deploy:graphql": "sanity graphql deploy --playground",
-    "deploy:studio": "sanity deploy",
-    "dev": "sanity start",
-    "eslint": "eslint --color --ext .js,.json,.jsx,.ts,.tsx .",
-    "eslint:fix": "npm run eslint -- --fix"
-  },
-  "version": "1.0.0"
+  }
 }
