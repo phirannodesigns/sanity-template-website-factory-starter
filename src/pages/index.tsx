@@ -140,6 +140,44 @@ export const query = graphql`
             }
           }
         }
+        ... on SanityServicesGrid {
+          id: _key
+          _type
+          colours
+          services {
+            id: _key
+            figure {
+              id: _key
+              _type
+              alt
+              asset {
+                gatsbyImageData(width: 480)
+              }
+            }
+            link {
+              isButton
+              page {
+                ... on SanityHomePage {
+                  _type
+                }
+                ... on SanityPage {
+                  title
+                  slug {
+                    current
+                  }
+                }
+              }
+              styles {
+                isBlock
+                isLarge
+                style
+              }
+              title
+              url
+            }
+          }
+          title
+        }
       }
       seo {
         metaDesc
