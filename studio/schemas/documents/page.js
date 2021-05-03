@@ -24,8 +24,7 @@ export default {
     {
       title: 'Page Modules',
       name: 'modules',
-      type: 'array',
-      of: [{ type: 'grid' }, { type: 'hero' }, { type: 'dividerPhoto' }],
+      type: 'modules',
     },
     {
       title: 'SEO / Share Settings',

@@ -13,6 +13,12 @@ export default {
       of: [{ type: 'figure' }, { type: 'copy' }],
       validation: (Rule) => Rule.required().min(2).max(2),
     },
+    {
+      title: 'Colours',
+      name: 'colours',
+      type: 'colours',
+      validation: (Rule) => Rule.required(),
+    },
   ],
   preview: {
     prepare() {

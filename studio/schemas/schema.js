@@ -19,6 +19,7 @@ import gridColumn from './modules/grid-column'
 import gridSize from './modules/grid-size'
 import hero from './modules/hero'
 import copyWithImage from './modules/copy-with-image'
+import servicesGrid from './modules/services-grid'
 import dividerPhoto from './modules/divider-photo'
 import newsletter from './modules/newsletter'
 import collectionGrid from './modules/collection-grid'
@@ -39,6 +40,9 @@ import socialLink from './objects/social-link'
 import openHours from './objects/open-hours'
 import address from './objects/address'
 import googleMaps from './objects/google-maps'
+import colours from './objects/colours'
+import service from './objects/service'
+import modules from './objects/modules'
 
 import simplePortableText from './objects/portable-simple'
 import complexPortableText from './objects/portable-complex'
@@ -80,6 +84,7 @@ export default createSchema({
     gridSize,
     hero,
     copyWithImage,
+    servicesGrid,
     dividerPhoto,
     newsletter,
     collectionGrid,
@@ -102,6 +107,9 @@ export default createSchema({
     openHours,
     address,
     googleMaps,
+    colours,
+    service,
+    modules,
 
     simplePortableText,
     complexPortableText,
