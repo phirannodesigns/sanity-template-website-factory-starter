@@ -100,7 +100,7 @@ function Footer(): React.ReactElement {
                   <ul className="inline-flex space-x-2">
                     {generalSettings.socialLinks.map(({ icon, url }) => {
                       return (
-                        <li>
+                        <li key={url}>
                           <a
                             href={url}
                             target="_blank"
