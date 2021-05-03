@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { CopyWithImage, ISanityCopyWithImage } from './modules/copy-with-image';
 import { Hero, IHero } from './modules/hero';
-import { ServicesGrid } from './modules/services-grid';
+import { IServicesGrid, ServicesGrid } from './modules/services-grid';
 
 interface IGrid {
   id: string;
@@ -15,7 +15,9 @@ interface IDividerPhoto {
 }
 
 interface SanityModulesProps {
-  modules: Array<IHero | ISanityCopyWithImage | IGrid | IDividerPhoto>;
+  modules: Array<
+    IHero | ISanityCopyWithImage | IServicesGrid | IGrid | IDividerPhoto
+  >;
 }
 
 function SanityModules({ modules }: SanityModulesProps): React.ReactElement {
@@ -29,6 +31,9 @@ function SanityModules({ modules }: SanityModulesProps): React.ReactElement {
           case 'copyWithImage':
             return <CopyWithImage key={module.id} copyWithImage={module} />;
 
+          case 'servicesGrid':
+            return <ServicesGrid key={module.id} servicesGrid={module} />;
+
           case 'grid':
             return null;
 
@@ -39,7 +44,6 @@ function SanityModules({ modules }: SanityModulesProps): React.ReactElement {
             return null;
         }
       })}
-      <ServicesGrid />
     </>
   );
 }
