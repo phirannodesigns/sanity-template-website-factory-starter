@@ -17,21 +17,23 @@ interface IDividerPhoto {
   _type: 'dividerPhoto';
 }
 
+interface ISeo {
+  metaDesc: string;
+  metaTitle: string;
+  shareDesc: string;
+  shareGraphic: {
+    asset: {
+      url: string;
+    };
+  };
+  shareTitle: string;
+}
+
 interface IndexPageProps {
   data: {
     sanityHomePage: {
       modules: Array<IHero | ISanityCopyWithImage | IGrid | IDividerPhoto>;
-      seo: {
-        metaDesc: string;
-        metaTitle: string;
-        shareDesc: string;
-        shareGraphic: {
-          asset: {
-            url: string;
-          };
-        };
-        shareTitle: string;
-      };
+      seo: ISeo;
     };
   };
 }
