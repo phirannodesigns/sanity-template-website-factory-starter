@@ -42,7 +42,7 @@ function PageTemplate({ data }: PageTemplateProps): JSX.Element {
   const { modules, seo } = data.sanityPage;
   return (
     <>
-      <SEO title={seo.metaTitle} image={seo?.shareGraphic?.asset.url} />
+      <SEO title={seo?.metaTitle} image={seo?.shareGraphic?.asset.url} />
       <Layout>
         <SanityModules modules={modules} />
       </Layout>
