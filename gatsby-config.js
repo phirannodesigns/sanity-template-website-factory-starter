@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 const dotenv = require('dotenv');
 
 dotenv.config({ path: '.env' });
@@ -70,7 +71,7 @@ module.exports = {
         dataset: process.env.GATSBY_SANITY_DATASET,
 
         // Set to `true` in order for drafts to replace their published version. By default, drafts will be skipped.
-        overlayDrafts: !isProd,
+        // overlayDrafts: !isProd,
 
         // Set to `true` to keep a listener open and update with the latest changes in realtime. If you add a `token` you will get all content updates down to each keypress.
         watchMode: !isProd,
