@@ -64,25 +64,7 @@ export const query = graphql`
             text
           }
           link {
-            isButton
-            page {
-              ... on SanityHomePage {
-                _type
-              }
-              ... on SanityPage {
-                title
-                slug {
-                  current
-                }
-              }
-            }
-            styles {
-              isBlock
-              isLarge
-              style
-            }
-            title
-            url
+            ...CTALink
           }
           photos {
             desktopImage {
@@ -117,25 +99,7 @@ export const query = graphql`
               _type
               _rawComplexPortableText
               link {
-                isButton
-                page {
-                  ... on SanityHomePage {
-                    _type
-                  }
-                  ... on SanityPage {
-                    title
-                    slug {
-                      current
-                    }
-                  }
-                }
-                styles {
-                  isBlock
-                  isLarge
-                  style
-                }
-                title
-                url
+                ...CTALink
               }
             }
           }
@@ -155,25 +119,7 @@ export const query = graphql`
               }
             }
             link {
-              isButton
-              page {
-                ... on SanityHomePage {
-                  _type
-                }
-                ... on SanityPage {
-                  title
-                  slug {
-                    current
-                  }
-                }
-              }
-              styles {
-                isBlock
-                isLarge
-                style
-              }
-              title
-              url
+              ...CTALink
             }
           }
           title
